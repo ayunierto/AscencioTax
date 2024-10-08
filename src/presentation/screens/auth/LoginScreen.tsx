@@ -4,11 +4,13 @@ import {View, StyleSheet, Image} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {Button, FAB, Text, TextInput, useTheme} from 'react-native-paper';
 import {RootStackParams} from '../../natigation/StackNavigator';
+import {FIREBASE_API_KEY} from '@env';
 
 interface Props extends StackScreenProps<RootStackParams, 'LoginScreen'> {}
 
 export const LoginScreen = ({navigation}: Props) => {
   const theme = useTheme();
+  console.log(FIREBASE_API_KEY);
   return (
     <View style={{...styles.container, backgroundColor: theme.colors.primary}}>
       <ScrollView>
