@@ -10,6 +10,7 @@ import ProfileScreen from './presentation/screens/settings/ProfileScreen';
 import HomeScreen from './presentation/screens/home/HomeScreen';
 import BookingScreen from './presentation/screens/booking/BookingScreen';
 import ResumeScreen from './presentation/screens/booking/ResumeScreen';
+import LoadingScreen from './presentation/loading/LoadingScreen';
 
 const theme = {
   ...DefaultTheme,
@@ -30,7 +31,7 @@ export const AscencioTaxApp = () => {
       }}>
       {/* <SafeAreaView style={{flex: 1}}> */}
       <View>
-        <ResumeScreen />
+        <LoadingScreen />
       </View>
       {/* </SafeAreaView> */}
     </PaperProvider>
