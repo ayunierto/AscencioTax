@@ -1,9 +1,13 @@
+import {StackScreenProps} from '@react-navigation/stack';
 import React from 'react';
 import {View, StyleSheet, Image} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {Button, FAB, Text, TextInput, useTheme} from 'react-native-paper';
+import {RootStackParams} from '../../natigation/StackNavigator';
 
-export const LoginScreen = () => {
+interface Props extends StackScreenProps<RootStackParams, 'LoginScreen'> {}
+
+export const LoginScreen = ({navigation}: Props) => {
   const theme = useTheme();
   return (
     <View style={{...styles.container, backgroundColor: theme.colors.primary}}>
@@ -19,7 +23,12 @@ export const LoginScreen = () => {
             Sign In
           </Text>
           <Text variant="titleMedium" style={{color: theme.colors.onPrimary}}>
-            New to this site? Sign Up
+            You don't have an account?{' '}
+            <Text
+              onPress={() => navigation.navigate('RegisterScreen')}
+              style={{color: theme.colors.primaryContainer}}>
+              Sign Up
+            </Text>
           </Text>
         </View>
 
@@ -50,15 +59,23 @@ export const LoginScreen = () => {
 
         <View style={styles.inputs}>
           <TextInput
+            autoCapitalize="none"
+            placeholder="user@gmail.com"
             label="Email"
+            keyboardType="email-address"
             style={{backgroundColor: theme.colors.onPrimary}}
           />
           <TextInput
             label="Password"
+            placeholder="*********"
             secureTextEntry
             style={{backgroundColor: theme.colors.onPrimary}}
           />
-          <Button icon={'log-in-outline'} uppercase mode="elevated">
+          <Button
+            icon={'log-in-outline'}
+            uppercase
+            mode="elevated"
+            onPress={() => console.log('press login')}>
             Login
           </Button>
         </View>
@@ -78,7 +95,7 @@ const styles = StyleSheet.create({
   },
   header: {
     paddingTop: 40,
-    paddingBottom: 20,
+    paddingBottom: 40,
     alignItems: 'center',
   },
   title: {

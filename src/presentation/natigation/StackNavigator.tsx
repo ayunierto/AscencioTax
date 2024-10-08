@@ -1,5 +1,8 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import {
+  createStackNavigator,
+  //   StackCardStyleInterpolator,
+} from '@react-navigation/stack';
 import LoginScreen from '../screens/auth/LoginScreen';
 import LoadingScreen from '../loading/LoadingScreen';
 import RegisterScreen from '../screens/auth/RegisterScreen';
@@ -17,7 +20,16 @@ export type RootStackParams = {
   BookingScreen: undefined;
   ResumeScreen: undefined;
 };
+
 const Stack = createStackNavigator<RootStackParams>();
+
+// const fadeAnimation: StackCardStyleInterpolator = ({current}) => {
+//   return {
+//     cardStyle: {
+//       opacity: current.progress,
+//     },
+//   };
+// };
 
 export const StackNavigator = () => {
   return (
@@ -25,6 +37,7 @@ export const StackNavigator = () => {
       initialRouteName="LoginScreen"
       screenOptions={{
         headerShown: false,
+        // cardStyleInterpolator: fadeAnimation,
       }}>
       <Stack.Screen name="LoadingScreen" component={LoadingScreen} />
       <Stack.Screen name="LoginScreen" component={LoginScreen} />

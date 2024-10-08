@@ -1,9 +1,13 @@
 /* eslint-disable react/react-in-jsx-scope */
+import {StackScreenProps} from '@react-navigation/stack';
 import {View, StyleSheet, Image} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {Button, FAB, Text, TextInput, useTheme} from 'react-native-paper';
+import {RootStackParams} from '../../natigation/StackNavigator';
 
-export const RegisterScreen = () => {
+interface Props extends StackScreenProps<RootStackParams, 'RegisterScreen'> {}
+
+export const RegisterScreen = ({navigation}: Props) => {
   const theme = useTheme();
   return (
     <View style={{...styles.container, backgroundColor: theme.colors.primary}}>
@@ -19,7 +23,12 @@ export const RegisterScreen = () => {
             Sign Up
           </Text>
           <Text variant="titleMedium" style={{color: theme.colors.onPrimary}}>
-            Already a member? Sign In
+            Already a member?{' '}
+            <Text
+              style={{color: theme.colors.primaryContainer}}
+              onPress={() => navigation.goBack()}>
+              Sign In
+            </Text>
           </Text>
         </View>
 
@@ -78,7 +87,7 @@ const styles = StyleSheet.create({
   },
   header: {
     paddingTop: 40,
-    paddingBottom: 20,
+    paddingBottom: 40,
     alignItems: 'center',
   },
   title: {

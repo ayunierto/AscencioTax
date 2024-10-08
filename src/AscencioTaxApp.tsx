@@ -17,7 +17,18 @@ export const AscencioTaxApp = () => {
         // eslint-disable-next-line react/no-unstable-nested-components
         icon: props => <IonIcon {...props} />,
       }}>
-      <NavigationContainer theme={LightTheme}>
+      <NavigationContainer
+        theme={{
+          dark: false,
+          colors: {
+            primary: theme.colors.primary,
+            background: theme.colors.primary,
+            card: theme.colors.primaryContainer,
+            text: theme.colors.onPrimary,
+            border: theme.colors.tertiary,
+            notification: theme.colors.primaryContainer,
+          },
+        }}>
         <StackNavigator />
       </NavigationContainer>
     </PaperProvider>
