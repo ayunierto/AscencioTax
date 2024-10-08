@@ -30,7 +30,7 @@ export const AscencioTaxApp = () => {
       }}>
       {/* <SafeAreaView style={{flex: 1}}> */}
       <View>
-        <HomeScreen />
+        <BookingScreen />
       </View>
       {/* </SafeAreaView> */}
     </PaperProvider>
