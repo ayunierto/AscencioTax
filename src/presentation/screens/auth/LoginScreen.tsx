@@ -1,65 +1,68 @@
 import React from 'react';
 import {View, StyleSheet, Image} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 import {Button, FAB, Text, TextInput, useTheme} from 'react-native-paper';
 
 export const LoginScreen = () => {
   const theme = useTheme();
   return (
     <View style={{...styles.container, backgroundColor: theme.colors.primary}}>
-      <View style={styles.header}>
-        <Image
-          source={require('../../../assets/logo.webp')}
-          style={styles.banner}
-        />
-        <Text
-          style={{...styles.title, color: theme.colors.onPrimary}}
-          variant="displayLarge">
-          Sign In
-        </Text>
-        <Text variant="titleMedium" style={{color: theme.colors.onPrimary}}>
-          New to this site? Sign Up
-        </Text>
-      </View>
+      <ScrollView>
+        <View style={styles.header}>
+          <Image
+            source={require('../../../assets/logo.webp')}
+            style={styles.banner}
+          />
+          <Text
+            style={{...styles.title, color: theme.colors.onPrimary}}
+            variant="displayLarge">
+            Sign In
+          </Text>
+          <Text variant="titleMedium" style={{color: theme.colors.onPrimary}}>
+            New to this site? Sign Up
+          </Text>
+        </View>
 
-      <View style={styles.social}>
-        <FAB
-          icon={'logo-google'}
-          onPress={() => console.log('Pressed')}
-          style={{backgroundColor: theme.colors.onPrimary}}
-        />
-        <FAB
-          icon={'logo-apple'}
-          onPress={() => console.log('Pressed')}
-          style={{backgroundColor: theme.colors.onPrimary}}
-        />
+        <View style={styles.social}>
+          <FAB
+            icon={'logo-google'}
+            onPress={() => console.log('Pressed')}
+            style={{backgroundColor: theme.colors.onPrimary}}
+          />
+          <FAB
+            icon={'logo-apple'}
+            onPress={() => console.log('Pressed')}
+            style={{backgroundColor: theme.colors.onPrimary}}
+          />
 
-        <FAB
-          icon={'logo-facebook'}
-          onPress={() => console.log('Pressed')}
-          style={{backgroundColor: theme.colors.onPrimary}}
-        />
-      </View>
+          <FAB
+            icon={'logo-facebook'}
+            onPress={() => console.log('Pressed')}
+            style={{backgroundColor: theme.colors.onPrimary}}
+          />
+        </View>
 
-      <View style={styles.orEmail}>
-        <Text variant="titleMedium" style={{color: theme.colors.onPrimary}}>
-          Or login with email
-        </Text>
-      </View>
+        <View style={styles.orEmail}>
+          <Text variant="titleMedium" style={{color: theme.colors.onPrimary}}>
+            Or login with email
+          </Text>
+        </View>
 
-      <View style={styles.inputs}>
-        <TextInput
-          label="Email"
-          style={{backgroundColor: theme.colors.onPrimary}}
-        />
-        <TextInput
-          label="Password"
-          secureTextEntry
-          style={{backgroundColor: theme.colors.onPrimary}}
-        />
-        <Button icon={'log-in-outline'} uppercase mode="elevated">
-          Login
-        </Button>
-      </View>
+        <View style={styles.inputs}>
+          <TextInput
+            label="Email"
+            style={{backgroundColor: theme.colors.onPrimary}}
+          />
+          <TextInput
+            label="Password"
+            secureTextEntry
+            style={{backgroundColor: theme.colors.onPrimary}}
+          />
+          <Button icon={'log-in-outline'} uppercase mode="elevated">
+            Login
+          </Button>
+        </View>
+      </ScrollView>
     </View>
   );
 };

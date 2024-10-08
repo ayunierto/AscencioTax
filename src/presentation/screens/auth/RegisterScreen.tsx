@@ -1,5 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
-import {View, StyleSheet, ScrollView, Image} from 'react-native';
+import {View, StyleSheet, Image} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 import {Button, FAB, Text, TextInput, useTheme} from 'react-native-paper';
 
 export const RegisterScreen = () => {
