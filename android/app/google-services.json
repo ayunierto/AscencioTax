@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "595254665638",
+    "project_id": "ascenciotax-838a5",
+    "storage_bucket": "ascenciotax-838a5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:595254665638:android:d4726940af608014f3ef67",
+        "android_client_info": {
+          "package_name": "com.ascenciotaxinc.ascenciotax"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfyK2LyAW6RNnOhfgb-UWx8-rvhvCZBA4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
