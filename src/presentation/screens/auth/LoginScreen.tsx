@@ -1,16 +1,18 @@
 import {StackScreenProps} from '@react-navigation/stack';
-import React from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet, Image} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {Button, FAB, Text, TextInput, useTheme} from 'react-native-paper';
 import {RootStackParams} from '../../natigation/StackNavigator';
-import {FIREBASE_API_KEY} from '@env';
 
 interface Props extends StackScreenProps<RootStackParams, 'LoginScreen'> {}
 
 export const LoginScreen = ({navigation}: Props) => {
   const theme = useTheme();
-  console.log(FIREBASE_API_KEY);
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
     <View style={{...styles.container, backgroundColor: theme.colors.primary}}>
       <ScrollView>
@@ -65,11 +67,15 @@ export const LoginScreen = ({navigation}: Props) => {
             placeholder="user@gmail.com"
             label="Email"
             keyboardType="email-address"
+            value={email}
+            onChangeText={text => setEmail(text)}
             style={{backgroundColor: theme.colors.onPrimary}}
           />
           <TextInput
             label="Password"
             placeholder="*********"
+            value={password}
+            onChangeText={text => setPassword(text)}
             secureTextEntry
             style={{backgroundColor: theme.colors.onPrimary}}
           />

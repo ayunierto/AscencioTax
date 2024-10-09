@@ -1,4 +1,4 @@
-/* eslint-disable react/react-in-jsx-scope */
+import React, {useState} from 'react';
 import {StackScreenProps} from '@react-navigation/stack';
 import {View, StyleSheet, Image} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
@@ -9,6 +9,10 @@ interface Props extends StackScreenProps<RootStackParams, 'RegisterScreen'> {}
 
 export const RegisterScreen = ({navigation}: Props) => {
   const theme = useTheme();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
     <View style={{...styles.container, backgroundColor: theme.colors.primary}}>
       <ScrollView>
@@ -60,11 +64,18 @@ export const RegisterScreen = ({navigation}: Props) => {
         <View style={styles.inputs}>
           <TextInput
             label="Email"
+            value={email}
+            onChangeText={text => setEmail(text)}
+            keyboardType="email-address"
+            autoCapitalize="none"
             style={{backgroundColor: theme.colors.onPrimary}}
           />
           <TextInput
             label="Password"
+            autoCapitalize="none"
             secureTextEntry
+            value={password}
+            onChangeText={text => setPassword(text)}
             style={{backgroundColor: theme.colors.onPrimary}}
           />
           <Button icon={'log-in-outline'} uppercase mode="elevated">
