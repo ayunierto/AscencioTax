@@ -1,13 +1,35 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {Image, ScrollView, StyleSheet, View} from 'react-native';
-import {Button, Card, Text, useTheme} from 'react-native-paper';
+import {Appbar, Button, Card, Text, useTheme} from 'react-native-paper';
+import {authSignOut} from '../../../actions/auth/auth';
+import {RootStackParams} from '../../natigation/StackNavigator';
+import {StackScreenProps} from '@react-navigation/stack';
 
-export const HomeScreen = () => {
+interface Props extends StackScreenProps<RootStackParams, 'HomeScreen'> {}
+
+export const HomeScreen = ({navigation}: Props) => {
   const theme = useTheme();
+
+  const signOut = async () => {
+    await authSignOut().then(() => navigation.navigate('LoginScreen'));
+  };
 
   return (
     <ScrollView>
+      <Appbar.Header style={{backgroundColor: theme.colors.primary}}>
+        <Appbar.Content title="" color={theme.colors.onPrimary} />
+        <Appbar.Action
+          icon="person-outline"
+          onPress={() => {}}
+          color={theme.colors.onPrimary}
+        />
+        <Appbar.Action
+          icon="log-out-outline"
+          onPress={signOut}
+          color={theme.colors.onPrimary}
+        />
+      </Appbar.Header>
       <View
         style={{
           ...styles.container,

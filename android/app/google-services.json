@@ -7,12 +7,25 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:595254665638:android:d4726940af608014f3ef67",
+        "mobilesdk_app_id": "1:595254665638:android:1b78d96f31792aeaf3ef67",
         "android_client_info": {
-          "package_name": "com.ascenciotaxinc.ascenciotax"
+          "package_name": "com.ascenciotax"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "595254665638-n2kog7831r5e9b51fv890q27ojvvh3eo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ascenciotax",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "595254665638-tjbirrm0g9valqknsj0ctu2pcha4m7te.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDfyK2LyAW6RNnOhfgb-UWx8-rvhvCZBA4"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "595254665638-tjbirrm0g9valqknsj0ctu2pcha4m7te.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

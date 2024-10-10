@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>595254665638-n33cj36nte1u837o42pjqitl1fggkmp4.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.595254665638-n33cj36nte1u837o42pjqitl1fggkmp4</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>595254665638-n2kog7831r5e9b51fv890q27ojvvh3eo.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCh5oHpVoiZOreyeYgxex8dX_eB-_MVNpI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>595254665638</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.AscencioTax</string>
+	<key>PROJECT_ID</key>
+	<string>ascenciotax-838a5</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ascenciotax-838a5.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:595254665638:ios:58114c0f18ea161df3ef67</string>
+</dict>
+</plist>

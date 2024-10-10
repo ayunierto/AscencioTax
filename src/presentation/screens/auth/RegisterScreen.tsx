@@ -4,6 +4,7 @@ import {View, StyleSheet, Image} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {Button, FAB, Text, TextInput, useTheme} from 'react-native-paper';
 import {RootStackParams} from '../../natigation/StackNavigator';
+import {authRegister} from '../../../actions/auth/auth';
 
 interface Props extends StackScreenProps<RootStackParams, 'RegisterScreen'> {}
 
@@ -12,6 +13,10 @@ export const RegisterScreen = ({navigation}: Props) => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const register = async () => {
+    await authRegister(email, password);
+  };
 
   return (
     <View style={{...styles.container, backgroundColor: theme.colors.primary}}>
@@ -78,7 +83,11 @@ export const RegisterScreen = ({navigation}: Props) => {
             onChangeText={text => setPassword(text)}
             style={{backgroundColor: theme.colors.onPrimary}}
           />
-          <Button icon={'log-in-outline'} uppercase mode="elevated">
+          <Button
+            icon={'log-in-outline'}
+            uppercase
+            mode="elevated"
+            onPress={register}>
             Sign Up
           </Button>
         </View>

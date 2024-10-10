@@ -1,17 +1,41 @@
 import {StackScreenProps} from '@react-navigation/stack';
 import React, {useState} from 'react';
-import {View, StyleSheet, Image} from 'react-native';
+import {View, StyleSheet, Image, Alert} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {Button, FAB, Text, TextInput, useTheme} from 'react-native-paper';
 import {RootStackParams} from '../../natigation/StackNavigator';
+import {useAuthStore} from '../../store/useAuthStore';
 
 interface Props extends StackScreenProps<RootStackParams, 'LoginScreen'> {}
 
 export const LoginScreen = ({navigation}: Props) => {
   const theme = useTheme();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [form, setForm] = useState({
+    email: '',
+    password: '',
+  });
+  const {login} = useAuthStore();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const onLogin = async () => {
+    if (form.email.length === 0 || form.password.length <= 6) {
+      Alert.alert('Error', 'Please fill in the fields!');
+      return;
+    }
+    setIsLoading(true);
+    const resp = await login(form.email, form.password);
+    setIsLoading(false);
+    if (resp.msg === 'ok') {
+      Alert.alert('Info', 'Login correct.');
+      return;
+    }
+
+    Alert.alert(
+      'Error',
+      'The supplied auth credential is incorrect, malformed or has expired.',
+    );
+  };
 
   return (
     <View style={{...styles.container, backgroundColor: theme.colors.primary}}>
@@ -67,23 +91,25 @@ export const LoginScreen = ({navigation}: Props) => {
             placeholder="user@gmail.com"
             label="Email"
             keyboardType="email-address"
-            value={email}
-            onChangeText={text => setEmail(text)}
+            value={form.email}
+            onChangeText={email => setForm({...form, email})}
             style={{backgroundColor: theme.colors.onPrimary}}
           />
           <TextInput
             label="Password"
-            placeholder="*********"
-            value={password}
-            onChangeText={text => setPassword(text)}
+            placeholder="Enter password here"
+            value={form.password}
+            onChangeText={password => setForm({...form, password})}
             secureTextEntry
             style={{backgroundColor: theme.colors.onPrimary}}
           />
           <Button
             icon={'log-in-outline'}
+            loading={isLoading}
+            disabled={isLoading}
             uppercase
             mode="elevated"
-            onPress={() => console.log('press login')}>
+            onPress={onLogin}>
             Login
           </Button>
         </View>

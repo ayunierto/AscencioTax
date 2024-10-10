@@ -1,13 +1,23 @@
 /* eslint-disable react/react-in-jsx-scope */
-import {PaperProvider, adaptNavigationTheme} from 'react-native-paper';
+import {
+  PaperProvider,
+  // adaptNavigationTheme
+} from 'react-native-paper';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 
 import 'react-native-gesture-handler';
-import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
-import {StackNavigator} from './presentation/natigation/StackNavigator';
+import {
+  NavigationContainer,
+  // DefaultTheme
+} from '@react-navigation/native';
+import {
+  // RootStackParams,
+  StackNavigator,
+} from './presentation/natigation/StackNavigator';
 
 import {theme} from './config/theme';
-const {LightTheme} = adaptNavigationTheme({reactNavigationLight: DefaultTheme});
+
+// const {LightTheme} = adaptNavigationTheme({reactNavigationLight: DefaultTheme});
 
 export const AscencioTaxApp = () => {
   return (
