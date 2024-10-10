@@ -27,7 +27,6 @@ export const LoginScreen = ({navigation}: Props) => {
     const resp = await login(form.email, form.password);
     setIsLoading(false);
     if (resp.msg === 'ok') {
-      Alert.alert('Info', 'Login correct.');
       return;
     }
 

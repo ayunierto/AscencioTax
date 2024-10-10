@@ -34,7 +34,7 @@ const Stack = createStackNavigator<RootStackParams>();
 export const StackNavigator = () => {
   return (
     <Stack.Navigator
-      initialRouteName="LoginScreen"
+      initialRouteName="LoadingScreen"
       screenOptions={{
         headerShown: false,
         // cardStyleInterpolator: fadeAnimation,

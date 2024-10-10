@@ -16,6 +16,7 @@ import {
 } from './presentation/natigation/StackNavigator';
 
 import {theme} from './config/theme';
+import {AuthProvider} from './presentation/provider/AuthProvider';
 
 // const {LightTheme} = adaptNavigationTheme({reactNavigationLight: DefaultTheme});
 
@@ -39,7 +40,9 @@ export const AscencioTaxApp = () => {
             notification: theme.colors.primaryContainer,
           },
         }}>
-        <StackNavigator />
+        <AuthProvider>
+          <StackNavigator />
+        </AuthProvider>
       </NavigationContainer>
     </PaperProvider>
   );

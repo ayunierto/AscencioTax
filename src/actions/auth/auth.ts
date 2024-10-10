@@ -9,7 +9,7 @@ export const authRegister = async (
     const resp = await auth().createUserWithEmailAndPassword(email, password);
     return {
       msg: 'ok',
-      user: resp,
+      user: resp.user,
     };
   } catch (error) {
     return {
@@ -27,7 +27,7 @@ export const authLogin = async (
     const resp = await auth().signInWithEmailAndPassword(email, password);
     return {
       msg: 'ok',
-      user: resp,
+      user: resp.user,
     };
   } catch (error) {
     console.error(error);
@@ -50,5 +50,14 @@ export const authSignOut = async (): Promise<AuthResponse> => {
       msg: 'error',
       user: undefined,
     };
+  }
+};
+
+export const authCheckStatus = async () => {
+  try {
+    const user = auth().currentUser;
+    return user;
+  } catch (error) {
+    return null;
   }
 };

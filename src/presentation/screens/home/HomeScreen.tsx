@@ -2,17 +2,16 @@
 import React from 'react';
 import {Image, ScrollView, StyleSheet, View} from 'react-native';
 import {Appbar, Button, Card, Text, useTheme} from 'react-native-paper';
-import {authSignOut} from '../../../actions/auth/auth';
-import {RootStackParams} from '../../natigation/StackNavigator';
-import {StackScreenProps} from '@react-navigation/stack';
+import {useAuthStore} from '../../store/useAuthStore';
 
-interface Props extends StackScreenProps<RootStackParams, 'HomeScreen'> {}
-
-export const HomeScreen = ({navigation}: Props) => {
+export const HomeScreen = () => {
   const theme = useTheme();
 
+  const {logout} = useAuthStore();
+
   const signOut = async () => {
-    await authSignOut().then(() => navigation.navigate('LoginScreen'));
+    // await authSignOut().then(() => navigation.navigate('LoginScreen'));
+    await logout();
   };
 
   return (
