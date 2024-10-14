@@ -4,20 +4,24 @@ import {create} from 'zustand';
 import {
   authCheckStatus,
   authLogin,
+  authLoginWithGoogle,
   authRegister,
   authSignOut,
 } from '../../actions/auth/auth';
 import {AuthResponse} from '../../infrastructure/interfaces/AuthResponse';
 // import {StorageAdapter} from '../../config/adapter/storage-adapter';
+import auth from '@react-native-firebase/auth';
 
 export interface AuthState {
   status: AuthStatus;
-  user?: FirebaseAuthTypes.User;
+  user?: FirebaseAuthTypes.User | null;
 
   login: (email: string, password: string) => Promise<AuthResponse>;
-  regsiter: (email: string, password: string) => Promise<AuthResponse>;
+  register: (email: string, password: string) => Promise<AuthResponse>;
   checkStatus: () => Promise<void>;
   logout: () => Promise<void>;
+
+  loginWithGoogle: () => void;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -50,7 +54,7 @@ export const useAuthStore = create<AuthState>()((set, get) => ({
     };
   },
 
-  regsiter: async (email: string, password: string) => {
+  register: async (email: string, password: string) => {
     const resp = await authRegister(email, password);
     if (resp.msg === 'error') {
       set({status: 'unauthenticated', user: undefined});
@@ -83,5 +87,13 @@ export const useAuthStore = create<AuthState>()((set, get) => ({
       return;
     }
     set({status: 'unauthenticated', user: undefined});
+  },
+  loginWithGoogle: async () => {
+    try {
+      await authLoginWithGoogle();
+      set({status: 'authenticated', user: auth().currentUser});
+    } catch (error) {
+      console.error('Error in SignIn with Google: ', error);
+    }
   },
 }));

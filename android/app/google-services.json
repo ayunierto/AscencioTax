@@ -37,6 +37,13 @@
             {
               "client_id": "595254665638-tjbirrm0g9valqknsj0ctu2pcha4m7te.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "595254665638-n33cj36nte1u837o42pjqitl1fggkmp4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.AscencioTax"
+              }
             }
           ]
         }

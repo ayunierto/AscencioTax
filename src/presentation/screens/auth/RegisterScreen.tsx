@@ -1,21 +1,60 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StackScreenProps} from '@react-navigation/stack';
-import {View, StyleSheet, Image} from 'react-native';
+import {View, StyleSheet, Image, Alert} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {Button, FAB, Text, TextInput, useTheme} from 'react-native-paper';
 import {RootStackParams} from '../../natigation/StackNavigator';
-import {authRegister} from '../../../actions/auth/auth';
+import {useAuthStore} from '../../store/useAuthStore';
 
 interface Props extends StackScreenProps<RootStackParams, 'RegisterScreen'> {}
 
 export const RegisterScreen = ({navigation}: Props) => {
   const theme = useTheme();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [form, setForm] = useState({
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
+  const {register} = useAuthStore();
+  const [isLoading, setIsLoading] = useState(false);
+  const [passwordMatchMsg, setPasswordMatchMsg] = useState('');
 
-  const register = async () => {
-    await authRegister(email, password);
+  const checkEqualPasswords = () => {
+    if (form.password === form.confirmPassword) {
+      setPasswordMatchMsg('');
+      return true;
+    } else {
+      setPasswordMatchMsg('Passwords must match');
+      return false;
+    }
+  };
+
+  useEffect(() => {
+    checkEqualPasswords();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [form.password, form.confirmPassword]);
+
+  const onRegister = async () => {
+    if (form.email.length === 0 || form.password.length <= 6) {
+      Alert.alert('Error', 'Please fill in the fields!');
+      return;
+    }
+    if (form.password !== form.confirmPassword) {
+      Alert.alert('Error', 'Passwords must match!');
+      return;
+    }
+    setIsLoading(true);
+    const resp = await register(form.email, form.password);
+    setIsLoading(false);
+    if (resp.msg === 'ok') {
+      return;
+    }
+
+    Alert.alert(
+      'Error',
+      'The email address is already in use by another account.',
+    );
   };
 
   return (
@@ -69,8 +108,8 @@ export const RegisterScreen = ({navigation}: Props) => {
         <View style={styles.inputs}>
           <TextInput
             label="Email"
-            value={email}
-            onChangeText={text => setEmail(text)}
+            value={form.email}
+            onChangeText={email => setForm({...form, email})}
             keyboardType="email-address"
             autoCapitalize="none"
             style={{backgroundColor: theme.colors.onPrimary}}
@@ -79,15 +118,30 @@ export const RegisterScreen = ({navigation}: Props) => {
             label="Password"
             autoCapitalize="none"
             secureTextEntry
-            value={password}
-            onChangeText={text => setPassword(text)}
+            value={form.password}
+            onChangeText={password => setForm({...form, password})}
             style={{backgroundColor: theme.colors.onPrimary}}
           />
+          <TextInput
+            label="Confirm Password"
+            autoCapitalize="none"
+            secureTextEntry
+            value={form.confirmPassword}
+            onChangeText={confirmPassword =>
+              setForm({...form, confirmPassword})
+            }
+            style={{backgroundColor: theme.colors.onPrimary}}
+          />
+          {passwordMatchMsg !== '' && (
+            <Text style={styles.passwordMatch}>* {passwordMatchMsg}</Text>
+          )}
+
           <Button
             icon={'log-in-outline'}
+            loading={isLoading}
             uppercase
             mode="elevated"
-            onPress={register}>
+            onPress={onRegister}>
             Sign Up
           </Button>
         </View>
@@ -127,6 +181,9 @@ const styles = StyleSheet.create({
   },
   inputs: {
     gap: 20,
+  },
+  passwordMatch: {
+    color: 'yellow',
   },
 });
 

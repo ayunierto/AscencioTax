@@ -15,7 +15,7 @@ export const LoginScreen = ({navigation}: Props) => {
     email: '',
     password: '',
   });
-  const {login} = useAuthStore();
+  const {login, loginWithGoogle} = useAuthStore();
   const [isLoading, setIsLoading] = useState(false);
 
   const onLogin = async () => {
@@ -62,7 +62,7 @@ export const LoginScreen = ({navigation}: Props) => {
         <View style={styles.social}>
           <FAB
             icon={'logo-google'}
-            onPress={() => console.log('Pressed')}
+            onPress={() => loginWithGoogle()}
             style={{backgroundColor: theme.colors.onPrimary}}
           />
           <FAB
