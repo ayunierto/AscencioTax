@@ -18,7 +18,7 @@ export interface AuthState {
 
   login: (email: string, password: string) => Promise<AuthResponse>;
   register: (email: string, password: string) => Promise<AuthResponse>;
-  checkStatus: () => Promise<void>;
+  checkStatus: () => void;
   logout: () => Promise<void>;
 
   loginWithGoogle: () => void;
@@ -72,8 +72,8 @@ export const useAuthStore = create<AuthState>()((set, get) => ({
     };
   },
 
-  checkStatus: async () => {
-    const resp = await authCheckStatus();
+  checkStatus: () => {
+    const resp = authCheckStatus();
     if (!resp) {
       set({status: 'unauthenticated', user: undefined});
       return;

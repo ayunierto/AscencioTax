@@ -65,7 +65,7 @@ export const LoginScreen = ({navigation}: Props) => {
             onPress={() => loginWithGoogle()}
             style={{backgroundColor: theme.colors.onPrimary}}
           />
-          <FAB
+          {/* <FAB
             icon={'logo-apple'}
             onPress={() => console.log('Pressed')}
             style={{backgroundColor: theme.colors.onPrimary}}
@@ -75,7 +75,7 @@ export const LoginScreen = ({navigation}: Props) => {
             icon={'logo-facebook'}
             onPress={() => console.log('Pressed')}
             style={{backgroundColor: theme.colors.onPrimary}}
-          />
+          /> */}
         </View>
 
         <View style={styles.orEmail}>
